@@ -9,6 +9,7 @@ export default {
         extend: {
             fontFamily: {
                 legitima: ["Legitima", "sans-serif"],
+                poppins: ["Poppins", "sans-serif"],
             },
         },
     },

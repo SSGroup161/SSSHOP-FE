@@ -1,69 +1,382 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { useLanguage } from "../../utils/LanguageContext";
 
 export default function Home() {
+    const [mapUrl, setMapUrl] = useState(
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1499624642765!2d106.78087857592165!3d-6.243959261141998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1175b92614f%3A0x6173704d396d5a99!2sGandaria%20City!5e0!3m2!1sid!2sid!4v1721704678210!5m2!1sid!2sid"
+    );
+    const { isIndo } = useLanguage();
+
+    const switchMap = (url) => {
+        setMapUrl(url);
+    };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const title = "SHELLA SAUKIA.CO© Official Website";
+    const description =
+        "Shella Saukia Shop (SS Shop) is a branch company of the Shella Saukia Group that focuses on the world of fashion, the business has been started since 2014 which was started directly by Shella Saukia who initially started this business only as a reseller and is now developing and building her own company and holds the position as Chief Executive Officer (CEO) Shella Saukia Group.";
+
+    const canonicalUrl = "https://www.shellasaukia.co";
+
+    useEffect(() => {
+        document.title = title;
+
+        const metaDescription = document.querySelector(
+            'meta[name="description"]'
+        );
+        if (metaDescription) {
+            metaDescription.setAttribute("content", description);
+        } else {
+            const meta = document.createElement("meta");
+            meta.setAttribute("name", "description");
+            meta.setAttribute("content", description);
+            document.head.appendChild(meta);
+        }
+
+        const linkCanonical = document.querySelector('link[rel="canonical"]');
+        if (linkCanonical) {
+            linkCanonical.setAttribute("href", canonicalUrl);
+        } else {
+            const link = document.createElement("link");
+            link.setAttribute("rel", "canonical");
+            link.setAttribute("href", canonicalUrl);
+            document.head.appendChild(link);
+        }
+    }, [title, description, canonicalUrl]);
+
     return (
         <>
-            <div className="w-full h-screen flex justify-center items-center">
-                <div className="flex flex-col items-center justify-center">
-                    <svg
-                        width="40"
-                        height="52"
-                        viewBox="0 0 40 52"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M20.396 1.96722C20.239 1.79041 20.0423 1.71172 19.8058 1.73116C17.7078 4.57077 17.6161 7.48221 19.5304 10.4655C19.8451 10.8851 20.1599 10.8851 20.4746 10.4655C22.3358 7.61223 22.3096 4.77948 20.396 1.96722ZM19.9636 2.43935C21.7249 4.96336 21.7381 7.50759 20.0029 10.072C18.2914 7.53436 18.2783 4.99013 19.9636 2.43935Z"
-                            fill="#715442"
-                        />
-                        <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M20.2015 0H19.808C19.2675 0.63221 18.7823 1.31417 18.3523 2.04587C18.0454 2.50823 17.8224 3.00659 17.6835 3.54094C17.4676 3.47105 17.2578 3.37924 17.054 3.26553C16.2496 3.21748 15.8825 3.5978 15.9524 4.4065C14.4726 4.02112 13.253 4.41456 12.2934 5.58681C12.0506 5.94092 11.8277 6.30813 11.6245 6.68844C10.6906 6.22427 10.1923 6.51279 10.1295 7.554C8.87237 7.37622 7.91498 7.82211 7.25738 8.89169C7.02653 9.28268 6.88227 9.70232 6.8246 10.1507C6.03488 10.0528 5.70702 10.3938 5.84101 11.1736C5.90274 11.3142 5.99454 11.4322 6.11642 11.5277C5.20105 12.3856 5.30597 13.0938 6.43117 13.6523C6.07408 13.7871 5.95605 14.0363 6.07707 14.3998C6.35635 14.6772 6.65798 14.7034 6.98198 14.4785H6.50985V13.3769C6.33588 13.3401 6.1785 13.2614 6.03773 13.1408C6.15932 13.0659 6.29047 13.0397 6.43117 13.0621C6.33766 12.9941 6.24586 12.9154 6.15576 12.8261C6.1211 12.1005 6.47519 11.7726 7.21804 11.8425C7.65853 12.4032 8.20935 12.8097 8.87048 13.0621C8.84986 12.9458 8.87606 12.8409 8.94917 12.7474C9.29421 12.8401 9.63524 12.9451 9.9721 13.0621C10.7842 13.0106 11.5973 12.9974 12.4114 13.0228C12.284 13.0042 12.2053 12.9387 12.1754 12.8261C11.2803 12.9375 10.3884 12.9243 9.49998 12.7867C7.92953 12.2276 7.28692 11.1392 7.57213 9.52118C8.01861 8.5047 8.79242 8.04572 9.89341 8.14415C11.0983 8.3644 11.5311 9.05953 11.1918 10.2294C10.6166 10.8695 10.0527 10.8564 9.49998 10.19C9.36881 10.1375 9.23771 10.1375 9.10654 10.19C9.04194 10.5011 9.14683 10.7633 9.42129 10.9769C10.7409 11.5564 11.5934 11.1499 11.9786 9.75725C13.049 11.0736 14.4261 11.8998 16.1097 12.2359C16.066 12.266 16.0398 12.3054 16.031 12.3539H16.4245C16.4159 12.0093 16.2585 11.9043 15.9524 12.0392V11.8031C15.6945 11.7808 15.4454 11.807 15.2048 11.8818C15.102 11.7817 14.9839 11.703 14.8507 11.6457C14.9359 11.6262 15.0408 11.6131 15.1655 11.6064C14.9875 11.5512 14.9088 11.4594 14.9294 11.331C15.1857 11.5182 15.4742 11.5969 15.795 11.5671C15.1449 11.3606 14.5154 11.0852 13.9065 10.7408C12.3646 9.873 11.8007 8.57465 12.2147 6.84581C12.8322 5.33717 13.9469 4.69455 15.5589 4.91797C16.3617 5.12987 16.8076 5.64134 16.8966 6.45237C16.9184 7.03248 16.6823 7.46526 16.1884 7.75072C15.3158 8.04273 14.8044 7.74109 14.654 6.84581C14.4704 6.63597 14.2868 6.63597 14.1032 6.84581C14.0795 7.6104 14.4336 8.12189 15.1655 8.38022C16.0482 8.54987 16.7433 8.27446 17.2507 7.554C17.5995 9.20628 18.2946 10.6883 19.3359 11.9998C19.1013 12.039 18.8652 12.0522 18.6277 12.0392C19.0911 12.1717 19.537 12.1192 19.9654 11.8818C20.1264 11.9971 20.2707 11.9709 20.3982 11.8031C20.8588 12.215 21.344 12.2675 21.8539 11.9605C21.5157 12.0156 21.1748 12.0418 20.831 12.0392C21.2138 11.2475 21.6204 10.4606 22.0506 9.67856C22.2923 8.9928 22.5415 8.31089 22.7982 7.63269C23.1654 8.11142 23.6507 8.37369 24.2539 8.41956C25.2069 8.43648 25.7446 7.97742 25.867 7.04253C25.8981 6.7326 25.767 6.62768 25.4735 6.72778C25.3676 7.00579 25.2496 7.2812 25.1194 7.554C24.3515 8.07019 23.722 7.93902 23.2309 7.16056C22.8906 6.04448 23.2709 5.29695 24.3719 4.91797C26.157 4.70225 27.3242 5.44978 27.8735 7.16056C28.118 8.52673 27.6852 9.61522 26.5752 10.4261C25.4975 11.0952 24.3435 11.5543 23.1129 11.8031H24.1358V12.1179C24.535 12.0242 24.9284 11.9062 25.3162 11.7638C26.4512 11.3625 27.3561 10.6674 28.0309 9.67856C28.1266 10.2245 28.3758 10.6835 28.7784 11.0556C29.637 11.4519 30.3584 11.2815 30.9423 10.5441C31.0158 10.1835 30.8715 10.0655 30.5095 10.19L30.1948 10.5048C29.5099 10.8763 29.0247 10.7058 28.7391 9.99331C28.5579 9.3572 28.7284 8.84573 29.2505 8.4589C30.0805 7.97411 30.8935 8.00031 31.6898 8.53759C32.4334 9.14191 32.7089 9.91572 32.5161 10.8589C32.0914 11.9262 31.3177 12.5819 30.1948 12.8261C30.4295 12.8768 30.6525 12.9031 30.8636 12.9047C30.9979 12.8412 31.0634 12.7363 31.0603 12.59C31.194 12.5774 31.3252 12.5905 31.4538 12.6293C31.3413 12.7777 31.2101 12.9089 31.0603 13.0228C31.1041 13.0529 31.1303 13.0923 31.139 13.1408C31.5156 12.9091 31.8828 12.6599 32.2407 12.3933C32.4537 12.1005 32.7291 11.9038 33.0669 11.8031C33.6596 11.8968 33.922 12.2378 33.8538 12.8261C33.4646 13.086 33.0319 13.2171 32.5554 13.2195C32.5285 13.2854 32.4761 13.3117 32.398 13.2982C32.1731 13.3506 31.9371 13.4031 31.6898 13.4556C31.8357 13.5547 31.9799 13.5547 32.1226 13.4556C32.1816 13.5048 32.2473 13.5442 32.3193 13.5736L31.6898 13.6523L32.2407 13.731L32.0046 13.8097C32.3799 13.8812 32.3929 13.9468 32.0439 14.0064C31.7115 13.9023 31.3705 13.8236 31.021 13.7703C30.9109 13.8275 30.7929 13.8669 30.6669 13.8883C31.0431 13.9433 31.0562 13.9827 30.7063 14.0064C30.1244 13.8692 29.5342 13.8167 28.9358 13.849C30.346 14.0711 31.7624 14.3202 33.1849 14.5965C33.7876 14.7541 34.0368 14.5312 33.9324 13.9277C33.8215 13.8264 33.7035 13.7346 33.5783 13.6523C34.6908 13.0897 34.7956 12.3815 33.8931 11.5277C34.1845 11.2605 34.2762 10.9326 34.1685 10.5441C33.9212 10.2304 33.5933 10.073 33.1849 10.072C32.8055 8.28249 31.7039 7.44317 29.88 7.554C29.9394 6.89198 29.6378 6.52477 28.9751 6.45237C28.7406 6.46474 28.5307 6.54343 28.3456 6.68844C27.5482 4.80134 26.145 4.04069 24.1358 4.4065C24.124 3.56826 23.7044 3.18794 22.8769 3.26553C22.7297 3.37303 22.5723 3.46483 22.4047 3.54094C22.0195 2.74419 21.6129 1.95731 21.1851 1.18031C20.8952 0.746957 20.5673 0.35352 20.2015 0ZM20.0043 0.629541C17.029 4.36893 17.0159 8.11972 19.965 11.8819C20.0982 11.8051 20.2162 11.7002 20.3191 11.5671C22.9881 7.83575 22.8832 4.18989 20.0043 0.629541ZM17.0535 4.95722C17.146 4.93999 17.2247 4.96621 17.2896 5.03591C17.2465 5.4119 17.1416 5.43813 16.9748 5.11459C17.0034 5.06081 17.0296 5.00836 17.0535 4.95722ZM22.7189 4.95737C23.0947 4.98007 23.134 5.11122 22.8369 5.3508C22.7371 5.24027 22.6978 5.10912 22.7189 4.95737ZM10.8372 7.00341C11.247 6.9931 11.3781 7.17671 11.2306 7.55423C10.7025 7.65558 10.5714 7.47198 10.8372 7.00341ZM16.7279 3.85609C17.1377 3.84578 17.2688 4.02939 17.1213 4.4069C16.5932 4.50826 16.4621 4.32466 16.7279 3.85609ZM28.8564 7.00324C29.3276 7.01614 29.4325 7.21286 29.1712 7.59339C28.6756 7.63238 28.5706 7.43566 28.8564 7.00324ZM23.046 3.77705C23.5172 3.78996 23.6221 3.98668 23.3608 4.36721C22.8652 4.40619 22.7602 4.20947 23.046 3.77705ZM6.43007 10.7016C6.69451 10.7569 6.72073 10.8619 6.50876 11.0163C6.34018 10.9426 6.31395 10.8377 6.43007 10.7016ZM33.3417 10.7802C33.458 10.7596 33.5629 10.7858 33.6565 10.8589C33.502 11.0708 33.3971 11.0446 33.3417 10.7802Z"
-                            fill="#715442"
-                        />
-                        <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M15.7928 11.5671C16.725 11.7923 17.6692 11.9497 18.6256 12.0392C19.089 12.1717 19.5349 12.1192 19.9633 11.8818C20.1243 11.9971 20.2686 11.9709 20.396 11.8031C20.8566 12.215 21.3419 12.2675 21.8518 11.9605C22.2645 11.8796 22.6842 11.8271 23.1108 11.8031C23.4517 11.8031 23.7928 11.8031 24.1337 11.8031C24.1337 11.908 24.1337 12.013 24.1337 12.1179C23.9353 12.1476 23.7517 12.2132 23.5829 12.3146C25.1345 12.4679 26.682 12.6515 28.2255 12.8654C28.885 12.9262 29.5407 12.9131 30.1926 12.8261C30.4274 12.8768 30.6504 12.9031 30.8615 12.9047C30.9957 12.8412 31.0613 12.7363 31.0582 12.59C31.1919 12.5774 31.3231 12.5905 31.4516 12.6293C31.3391 12.7777 31.2079 12.9089 31.0582 13.0228C31.102 13.0529 31.1282 13.0923 31.1369 13.1408C31.0748 13.1631 31.0223 13.2024 30.9795 13.2588C31.4509 13.2981 31.9231 13.3112 32.3959 13.2982C32.171 13.3506 31.9349 13.4031 31.6877 13.4556C31.8335 13.5547 31.9777 13.5547 32.1205 13.4556C32.1795 13.5048 32.2451 13.5442 32.3172 13.5736C32.1073 13.5998 31.8976 13.6261 31.6877 13.6523C31.8713 13.6785 32.0549 13.7048 32.2385 13.731C32.1598 13.7572 32.0811 13.7834 32.0025 13.8096C32.3777 13.8812 32.3908 13.9468 32.0418 14.0064C31.7093 13.9023 31.3683 13.8236 31.0189 13.7703C30.9088 13.8275 30.7907 13.8669 30.6648 13.8883C31.041 13.9433 31.054 13.9827 30.7041 14.0064C30.1222 13.8692 29.5321 13.8167 28.9336 13.849C26.4976 13.5806 24.0582 13.3314 21.6157 13.1015C20.5928 13.049 19.5698 13.049 18.5469 13.1015C14.669 13.3862 10.8133 13.8452 6.97983 14.4785C6.82246 14.4785 6.66508 14.4785 6.50771 14.4785C6.50771 14.1113 6.50771 13.7441 6.50771 13.3769C6.33373 13.3401 6.17636 13.2614 6.03558 13.1408C6.15718 13.0659 6.28833 13.0397 6.42902 13.0621C7.28619 13.3171 8.15173 13.3565 9.02571 13.1801C8.95363 13.1583 8.90122 13.1189 8.86833 13.0621C8.84772 12.9458 8.87392 12.8409 8.94702 12.7474C9.29206 12.8401 9.6331 12.9451 9.96996 13.0621C10.7821 13.0106 11.5952 12.9974 12.4093 13.0228C12.2819 13.0042 12.2032 12.9387 12.1732 12.8261C13.4453 12.6475 14.7306 12.4901 16.0289 12.3539C16.1601 12.3539 16.2912 12.3539 16.4223 12.3539C16.4138 12.0093 16.2564 11.9043 15.9502 12.0392C15.9502 11.9605 15.9502 11.8818 15.9502 11.8031C15.6923 11.7808 15.4432 11.807 15.2027 11.8818C15.0998 11.7817 14.9818 11.703 14.8486 11.6457C14.9337 11.6262 15.0386 11.6131 15.1633 11.6064C14.9853 11.5512 14.9067 11.4594 14.9273 11.331C15.1836 11.5182 15.4721 11.5969 15.7928 11.5671Z"
-                            fill="#715442"
-                        />
-                        <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M38.0061 26.0327V25.0097C37.9258 22.8777 37.7553 20.7531 37.4946 18.6361C37.1993 18.3898 36.8715 18.1931 36.511 18.0459C34.3549 17.2381 32.1254 16.7922 29.8226 16.7082C26.0193 16.4282 22.7275 17.5692 19.9473 20.1311C19.8242 19.6998 19.7455 19.2539 19.7112 18.7934C19.6229 18.6263 19.5049 18.4821 19.3571 18.3606C17.2102 17.3819 14.9545 16.8573 12.59 16.7869C10.005 16.4704 7.53942 16.8639 5.19337 17.9672C3.13892 18.8938 1.63074 20.3758 0.668844 22.4131C-0.414289 25.2599 -0.178226 27.9877 1.37703 30.5966C2.3405 31.8224 3.45525 32.8847 4.72125 33.7834C6.73168 35.1433 8.8562 36.3236 11.0949 37.3243C12.2671 37.9711 13.3031 38.7973 14.2031 39.803C15.9623 41.8861 16.2771 44.168 15.1473 46.6488C13.7214 48.7514 11.7411 49.6039 9.20644 49.2061C6.65384 48.4612 4.64731 46.9793 3.18684 44.7603C2.47797 43.3167 1.83535 41.8478 1.259 40.3538C0.797789 40.1959 0.39124 40.2746 0.0393439 40.5899C-0.0131146 41.1145 -0.0131146 41.639 0.0393439 42.1636C0.333801 44.6826 0.622321 47.2006 0.904906 49.7176L1.259 50.0717C4.13338 51.3006 7.13662 51.9433 10.2687 51.9995C13.3254 51.929 16.1188 51.0634 18.6489 49.4029C18.6938 49.75 18.8774 49.9992 19.1997 50.1504C20.3478 50.638 21.5281 51.0315 22.7407 51.3307C26.5573 52.3794 30.308 52.1957 33.993 50.7799C38.4177 48.6071 40.3981 45.053 39.9339 40.1177C39.7003 38.3658 39.0183 36.8184 37.888 35.4752C36.3011 33.9137 34.5569 32.563 32.6553 31.4228C31.1507 30.7361 29.6557 30.0279 28.1701 29.2982C26.909 28.5881 25.8729 27.6307 25.062 26.4261C23.6547 23.8244 24.1137 21.6342 26.439 19.8557C28.1932 18.9686 29.9505 18.9686 31.7111 19.8557C33.1375 20.7052 34.3047 21.82 35.2126 23.1999C35.7069 24.1489 36.1922 25.0931 36.6684 26.0327H38.0061ZM15.501 20.9573C13.9976 19.6212 12.2402 19.0311 10.229 19.1869C9.90999 19.3396 9.56895 19.4576 9.20605 19.541C6.70227 20.9431 5.92851 23.0021 6.88477 25.7179C7.67686 27.192 8.7916 28.3592 10.229 29.2195L15.1076 31.5801C17.1087 32.7461 18.8792 34.2018 20.419 35.9473C21.3052 37.0831 21.856 38.3684 22.0715 39.803C22.3594 41.7107 22.1889 43.573 21.56 45.3898C22.5568 46.8081 23.8421 47.8965 25.4157 48.6553C27.5795 49.6683 29.6516 49.5109 31.632 48.1832C33.5435 46.4257 34.0812 44.3143 33.2451 41.8489C32.5555 40.3196 31.5195 39.0737 30.1369 38.1112C28.6356 37.1505 27.0619 36.3112 25.4157 35.5932C23.4154 34.4851 21.5925 33.1343 19.9469 31.5408C18.126 29.3727 17.444 26.8809 17.901 24.0655C17.2819 22.8945 16.482 21.8585 15.501 20.9573Z"
-                            fill="#715442"
-                        />
-                    </svg>
-                    <h1 className="text-2xl md:text-5xl text-[#715442] font-legitima mt-2 md:mt-8">
-                        PAGE IS
-                    </h1>
-                    <h1 className="text-2xl md:text-5xl text-[#715442] font-legitima">
-                        UNDER CONSTRUCTION
-                    </h1>
-                    <img
-                        src="/assetNotFound.svg"
-                        alt="AssetHero"
-                        width={100}
-                        height={100}
-                        className="w-72 md:w-96 mt-10"
-                    />
-                    <h1 className="font-legitima text-3xl md:text-6xl mt-6 text-[#715442] tracking-widest">
-                        SHELLA SAUKIA
-                    </h1>
-                    <p className="text-[#715442] text-sm md:text-base font-sans">
-                        Sorry for the trouble, we'll be back soon!
-                    </p>
-                    <a
-                        href="mailto:info@shellasaukia.co"
-                        className="underline text-[#715442] hover:text-[#C29E83] mt-2 text-sm md:text-base"
-                    >
-                        info@shellasaukia.co
-                    </a>
+            <Navbar />
+            <section className="w-full h-screen flex justify-center items-center bg-[url('/bg-main.png')] bg-cover bg-center md:bg-left lg:bg-top">
+                <div className="bg-drop w-full h-full">
+                    <div className="w-full h-full flex max-w-screen-2xl items-center justify-center m-auto">
+                        <div className="flex-1 w-full h-full"></div>
+                        <div className="flex-1 w-full h-full flex flex-col items-end justify-between py-24 md:py-36 lg:py-28 px-4 md:px-12 xl:px-20 2xl:py-48 2xl:px-10">
+                            <h1 className="text-shadow font-legitima text-3xl md:text-5xl xl:text-6xl 2xl:text-7xl text-end text-white w-80 md:w-[35rem] xl:w-[40rem] 2xl:w-[48rem] drop-shadow-lg">
+                                {isIndo
+                                    ? "Tunjukkan Kemewahan Batin Anda dengan Koleksi Eksklusif Kami "
+                                    : "Unveil Your Inner Deluxe with Our Exclusive Collection"}
+                            </h1>
+                            <p className="font-poppins text-xs md:text-sm xl:text-base w-60 md:w-96 2xl:w-[27rem] text-white">
+                                {isIndo
+                                    ? "Masuki dunia tempat bertemunya keanggunan abadi kecanggihan masa kini. Pilihan kami yang telah dikurasi Potongan busana mewah dirancang untuk mempercantik penampilan Anda gaya dan mendefinisikan ulang kemewahan. Jelajahi yang terbaru dari kami koleksi dan rasakan daya tarik yang indah keahlian dan kualitas yang tak tertandingi."
+                                    : "Step into a world where timeless elegance meets modern sophistication. Our curated selection of deluxe fashion pieces is designed to elevate your style and redefine luxury. Explore our latest collection and experience the allure of exquisite craftsmanship and unparalleled quality."}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+            <section className="w-full flex flex-col justify-center items-center mt-4 md:mt-10">
+                <div className="flex w-full gap-4 lg:gap-6 px-2 md:px-4 lg:px-6 max-w-screen-2xl m-auto flex-col md:flex-row">
+                    <div className="flex-1 relative bg-[url('/AssetHome1.png')] bg-cover bg-center">
+                        <div className="h-[80vh] lg:h-[110vh] xl:h-[130vh] w-full bg-black/20 flex items-end justify-center pb-20">
+                            <div className="flex flex-col items-center justify-center lg:gap-4">
+                                <h1 className="font-legitima text-white text-2xl md:text-3xl lg:text-4xl">
+                                    {isIndo
+                                        ? "Koleksi Gaun Mewah"
+                                        : "Dress Deluxe Collection"}
+                                </h1>
+                                <p className="font-poppins text-white/80 text-xs text-center w-72 lg:w-full max-w-[30rem]">
+                                    {isIndo
+                                        ? "Dikurasi dengan sempurna, setiap set menyatu Keanggunan abadi dengan modernitas kecanggihan, memastikan Anda selalu mencari disatukan dengan sempurna."
+                                        : "Curated to perfection, each set combines timeless elegance with modern sophistication, ensuring you always look impeccably put together."}
+                                </p>
+                                <button className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4">
+                                    <span className=" text-white relative z-10 duration-500">
+                                        {isIndo ? "Lihat Semua" : "See All"}
+                                    </span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 group-hover:-translate-x-full h-full"></span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 group-hover:translate-x-full h-full"></span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 delay-300 group-hover:-translate-y-full h-full"></span>
+                                    <span className="absolute delay-300 top-0 left-0 w-full bg-black duration-500 group-hover:translate-y-full h-full"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex-1 relative bg-[url('/AssetHome2.png')] bg-cover bg-center">
+                        <div className="h-[80vh] lg:h-[110vh] xl:h-[130vh] w-full bg-black/20 flex items-end justify-center pb-20">
+                            <div className="flex flex-col items-center justify-center lg:gap-4">
+                                <h1 className="font-legitima text-white text-2xl md:text-3xl lg:text-4xl">
+                                    {isIndo
+                                        ? "Satu Set Koleksi Mewah"
+                                        : "One Set Deluxe Collection"}
+                                </h1>
+                                <p className="font-poppins text-white/80 text-xs text-center w-72 lg:w-full max-w-[30rem]">
+                                    {isIndo
+                                        ? "Koleksi kami berkisar dari gaun koktail hingga gaun malam yang elegan, penawaran koleksi kami serangkaian desain yang memancarkan kelas dan kecanggihan."
+                                        : "Our collection from cocktail dresses to elegant evening gowns, our collection offers a range of designs that exude class and sophistication."}
+                                </p>
+                                <button className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4">
+                                    <span className=" text-white relative z-10 duration-500">
+                                        {isIndo ? "Lihat Semua" : "See All"}
+                                    </span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 group-hover:-translate-x-full h-full"></span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 group-hover:translate-x-full h-full"></span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 delay-300 group-hover:-translate-y-full h-full"></span>
+                                    <span className="absolute delay-300 top-0 left-0 w-full bg-black duration-500 group-hover:translate-y-full h-full"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="px-2 md:px-4 lg:px-6 w-full max-w-screen-2xl">
+                    <div className="w-full mt-6 md:mt-4 lg:mt-6 bg-[url('/AssetHome3.png')] bg-cover bg-center ">
+                        <div className="h-[80vh] md:h-[100vh] w-full bg-black/20 flex items-end justify-center pb-20">
+                            <div className="flex flex-col items-center justify-center lg:gap-4">
+                                <h1 className="font-legitima text-white text-2xl md:text-3xl lg:text-4xl">
+                                    {isIndo
+                                        ? "Koleksi Mewah Gaun Putih"
+                                        : "Deluxe Collection of White Dresses"}
+                                </h1>
+                                <p className="font-poppins text-white/80 text-xs text-center w-72 lg:w-full max-w-[30rem]">
+                                    {isIndo
+                                        ? "Menampilkan desain cantik yang diwujudkan kemurnian dan kecanggihan, koleksi ini Membawa sentuhan elegan untuk semua orang peluang."
+                                        : " Featuring exquisite designs that embody purity and sophistication, this collection brings a touch of elegance to every occasion."}
+                                </p>
+                                <button className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4">
+                                    <span className=" text-white relative z-10 duration-500">
+                                        {isIndo ? "Lihat Semua" : "See All"}
+                                    </span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 group-hover:-translate-x-full h-full"></span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 group-hover:translate-x-full h-full"></span>
+                                    <span className="absolute top-0 left-0 w-full bg-black duration-500 delay-300 group-hover:-translate-y-full h-full"></span>
+                                    <span className="absolute delay-300 top-0 left-0 w-full bg-black duration-500 group-hover:translate-y-full h-full"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="w-full lg:h-[70vh] bg-black mt-6 md:mt-10 flex justify-center">
+                <div className="flex justify-center max-w-screen-2xl 2xl:px-6 flex-col-reverse lg:flex-row">
+                    <div className="lg:w-[35rem] px-6 md:px-10 lg:px-20 py-10">
+                        <div>
+                            <h1 className="text-white/50 font-poppins ">
+                                {isIndo
+                                    ? "Memperkenalkan Koleksi Trending kami"
+                                    : "Introducing our Trending Collection"}
+                            </h1>
+                            <h1 className="text-white font-legitima text-4xl mt-10 leading-10">
+                                {isIndo
+                                    ? "Sempurnakan Lemari Pakaian Anda dengan Sophistic Deluxe Koleksi"
+                                    : "Elevate Your Wardrobe with Sophistic Deluxe Collection"}
+                            </h1>
+                            <p className="font-poppins text-white/90 mt-8 font-extralight">
+                                {isIndo
+                                    ? "Jelajahi Koleksi Deluxe kami, di mana setiap bagian merupakan bukti pengerjaan halus dan desain indah. Ketersediaan terbatas dan dibuat dengan sangat memperhatikan detail, seri ini mewujudkan kemewahan dalam bentuknya yang paling murni. Rasakan mode yang melampaui tren dan mendefinisikan ulang keanggunan."
+                                    : "Delve into our Deluxe Collection, where each piece is a testament to fine craftsmanship and exquisite design. Limited in availability and crafted with the utmost attention to detail, this series embodies luxury in its purest form. Experience fashion that transcends trends and redefines elegance."}
+                            </p>
+                            <button className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-8">
+                                <span className=" text-black group-hover:text-white relative z-10 duration-500">
+                                    {isIndo
+                                        ? "Jelajahi Koleksi Kami"
+                                        : "Explore Our Collection"}
+                                </span>
+                                <span className="absolute top-0 left-0 w-full bg-white duration-500 group-hover:-translate-x-full h-full"></span>
+                                <span className="absolute top-0 left-0 w-full bg-white duration-500 group-hover:translate-x-full h-full"></span>
+                                <span className="absolute top-0 left-0 w-full bg-white duration-500 delay-300 group-hover:-translate-y-full h-full"></span>
+                                <span className="absolute delay-300 top-0 left-0 w-full bg-white duration-500 group-hover:translate-y-full h-full"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="px-2 md:px-4 lg:px-0 mt-10 md:mt-6 lg:mt-0">
+                        <img
+                            src="/AssetHome4.png"
+                            alt="AssetHome4"
+                            width={20}
+                            height={20}
+                            className="w-full h-full"
+                        />
+                    </div>
+                </div>
+            </section>
+            <section className="md:h-screen w-full ">
+                <div className="md:h-screen w-full flex py-10 md:py-20 px-8 md:px-10 flex-col lg:flex-row max-w-screen-2xl m-auto">
+                    <div className="flex-1 ">
+                        <div className="w-full md:h-full h-96">
+                            <iframe
+                                src={mapUrl}
+                                width="100%"
+                                height="100%"
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                    </div>
+                    <div className="flex-1  flex items-start justify-center mt-10 lg:mt-0">
+                        <div className=" flex items-center justify-center flex-col lg:px-10">
+                            <h1 className="font-legitima text-3xl">
+                                {isIndo
+                                    ? "Temukan Toko Kami"
+                                    : "Find Our Store"}
+                            </h1>
+                            <div
+                                className="border-b-2 border-gray-400 py-6 mt-2 md:mt-6 hover:bg-gray-100 cursor-pointer transition-colors duration-300 ease-in-out"
+                                id="gandariacity"
+                                onClick={() =>
+                                    switchMap(
+                                        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1499624642765!2d106.78087857592165!3d-6.243959261141998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1175b92614f%3A0x6173704d396d5a99!2sGandaria%20City!5e0!3m2!1sid!2sid!4v1721704678210!5m2!1sid!2sid"
+                                    )
+                                }
+                            >
+                                <h1 className="font-legitima text-xl">
+                                    GANDARIA CITY
+                                </h1>
+                                <div className="flex items-center gap-4 mt-2">
+                                    <div className="w-6">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="25"
+                                            height="25"
+                                            viewBox="0 0 18 19"
+                                            fill="none"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                clipRule="evenodd"
+                                                d="M8.4465 17.1005C8.4465 17.1005 3 12.5135 3 8C3 6.4087 3.63214 4.88258 4.75736 3.75736C5.88258 2.63214 7.4087 2 9 2C10.5913 2 12.1174 2.63214 13.2426 3.75736C14.3679 4.88258 15 6.4087 15 8C15 12.5135 9.5535 17.1005 9.5535 17.1005C9.2505 17.3795 8.75175 17.3765 8.4465 17.1005ZM9 10.625C9.34472 10.625 9.68606 10.5571 10.0045 10.4252C10.323 10.2933 10.6124 10.0999 10.8562 9.85616C11.0999 9.6124 11.2933 9.32302 11.4252 9.00454C11.5571 8.68606 11.625 8.34472 11.625 8C11.625 7.65528 11.5571 7.31394 11.4252 6.99546C11.2933 6.67698 11.0999 6.3876 10.8562 6.14385C10.6124 5.90009 10.323 5.70674 10.0045 5.57482C9.68606 5.4429 9.34472 5.375 9 5.375C8.30381 5.375 7.63613 5.65156 7.14384 6.14385C6.65156 6.63613 6.375 7.30381 6.375 8C6.375 8.69619 6.65156 9.36387 7.14384 9.85616C7.63613 10.3484 8.30381 10.625 9 10.625Z"
+                                                fill="#BBBBBB"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h1 className="font-poppins text-xs md:text-sm">
+                                        {isIndo
+                                            ? "Lantai 2 Jl. Sultan Iskandar Muda, Gandaria, Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12240"
+                                            : "2nd Floor Jl. Sultan Iskandar Muda, Gandaria, Kby. Lama District, South Jakarta City, Special Capital Region of Jakarta 12240"}
+                                    </h1>
+                                </div>
+                                <div className="flex items-center gap-4 mt-2">
+                                    <div className="w-6">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="25"
+                                            height="25"
+                                            viewBox="0 0 18 19"
+                                            fill="none"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                clipRule="evenodd"
+                                                d="M9.5625 9.035V5H8.4375V9.5L11.6197 12.6822L12.4147 11.8872L9.5625 9.035ZM9 17C4.85775 17 1.5 13.6422 1.5 9.5C1.5 5.35775 4.85775 2 9 2C13.1422 2 16.5 5.35775 16.5 9.5C16.5 13.6422 13.1422 17 9 17Z"
+                                                fill="#BBBBBB"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h1 className="font-poppins text-xs md:text-sm">
+                                        {isIndo
+                                            ? "Buka Setiap Hari dari 10:00 WIB - 22:00 WIB"
+                                            : "Open Everyday from 10:00 AM - 10:00 PM"}
+                                    </h1>
+                                </div>
+                                <div className="flex items-center gap-4 mt-2">
+                                    <div className="w-6">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="25"
+                                            height="25"
+                                            viewBox="0 0 18 19"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M11.4353 12.5825L12.6953 11.3225C12.865 11.1549 13.0797 11.0402 13.3134 10.9923C13.547 10.9443 13.7896 10.9653 14.0116 11.0525L15.5472 11.6656C15.7715 11.7567 15.9639 11.9121 16.1 12.1123C16.2361 12.3125 16.31 12.5486 16.3122 12.7906V15.6031C16.3109 15.7678 16.2763 15.9306 16.2104 16.0815C16.1446 16.2325 16.0488 16.3685 15.929 16.4815C15.8092 16.5945 15.6677 16.6821 15.5132 16.739C15.3586 16.7959 15.1942 16.8209 15.0297 16.8125C4.26905 16.1431 2.0978 7.03065 1.68718 3.54315C1.66812 3.37189 1.68553 3.19853 1.73828 3.03448C1.79103 2.87044 1.87791 2.71942 1.99322 2.59136C2.10852 2.46331 2.24963 2.36111 2.40727 2.29151C2.5649 2.2219 2.73549 2.18647 2.9078 2.18752H5.62468C5.86712 2.18824 6.10381 2.26147 6.30429 2.3978C6.50477 2.53413 6.65989 2.72732 6.74968 2.95252L7.3628 4.48815C7.45295 4.70925 7.47594 4.95201 7.42893 5.1861C7.38191 5.4202 7.26695 5.63525 7.09843 5.8044L5.83843 7.0644C5.83843 7.0644 6.56405 11.975 11.4353 12.5825Z"
+                                                fill="#BBBBBB"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h1 className="font-poppins text-xs md:text-sm">
+                                        (+62) 822-5801-1491
+                                    </h1>
+                                </div>
+                            </div>
+                            <div
+                                className="border-b-2 border-gray-400 py-6 mt-2 md:mt-6 hover:bg-gray-100 cursor-pointer transition-colors duration-300 ease-in-out"
+                                id="margocity"
+                                onClick={() =>
+                                    switchMap(
+                                        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.1628852794997!2d106.83184857592319!3d-6.372961662342059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ec093dabf58d%3A0xd3365350a2ebe2f!2sMargoCity!5e0!3m2!1sid!2sid!4v1721707410382!5m2!1sid!2sid"
+                                    )
+                                }
+                            >
+                                <h1 className="font-legitima text-xl">
+                                    MARGO CITY
+                                </h1>
+                                <div className="flex items-center gap-4 mt-2">
+                                    <div className="w-6">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="25"
+                                            height="25"
+                                            viewBox="0 0 18 19"
+                                            fill="none"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                clipRule="evenodd"
+                                                d="M8.4465 17.1005C8.4465 17.1005 3 12.5135 3 8C3 6.4087 3.63214 4.88258 4.75736 3.75736C5.88258 2.63214 7.4087 2 9 2C10.5913 2 12.1174 2.63214 13.2426 3.75736C14.3679 4.88258 15 6.4087 15 8C15 12.5135 9.5535 17.1005 9.5535 17.1005C9.2505 17.3795 8.75175 17.3765 8.4465 17.1005ZM9 10.625C9.34472 10.625 9.68606 10.5571 10.0045 10.4252C10.323 10.2933 10.6124 10.0999 10.8562 9.85616C11.0999 9.6124 11.2933 9.32302 11.4252 9.00454C11.5571 8.68606 11.625 8.34472 11.625 8C11.625 7.65528 11.5571 7.31394 11.4252 6.99546C11.2933 6.67698 11.0999 6.3876 10.8562 6.14385C10.6124 5.90009 10.323 5.70674 10.0045 5.57482C9.68606 5.4429 9.34472 5.375 9 5.375C8.30381 5.375 7.63613 5.65156 7.14384 6.14385C6.65156 6.63613 6.375 7.30381 6.375 8C6.375 8.69619 6.65156 9.36387 7.14384 9.85616C7.63613 10.3484 8.30381 10.625 9 10.625Z"
+                                                fill="#BBBBBB"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h1 className="font-poppins text-xs md:text-sm">
+                                        {isIndo
+                                            ? "Lobi Utara Lantai Dasar Jl. Margonda Raya No.358, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423"
+                                            : "North Lobby Ground Floor Jl. Margonda Raya No.358, Kemiri Muka, Beji District, Depok City, West Java 16423"}
+                                    </h1>
+                                </div>
+                                <div className="flex items-center gap-4 mt-2">
+                                    <div className="w-6">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="25"
+                                            height="25"
+                                            viewBox="0 0 18 19"
+                                            fill="none"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                clipRule="evenodd"
+                                                d="M9.5625 9.035V5H8.4375V9.5L11.6197 12.6822L12.4147 11.8872L9.5625 9.035ZM9 17C4.85775 17 1.5 13.6422 1.5 9.5C1.5 5.35775 4.85775 2 9 2C13.1422 2 16.5 5.35775 16.5 9.5C16.5 13.6422 13.1422 17 9 17Z"
+                                                fill="#BBBBBB"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h1 className="font-poppins text-xs md:text-sm">
+                                        {isIndo
+                                            ? "Buka Setiap Hari dari 10:00 WIB - 22:00 WIB"
+                                            : "Open Everyday from 10:00 AM - 10:00 PM"}
+                                    </h1>
+                                </div>
+                                <div className="flex items-center gap-4 mt-2">
+                                    <div className="w-6">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="25"
+                                            height="25"
+                                            viewBox="0 0 18 19"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M11.4353 12.5825L12.6953 11.3225C12.865 11.1549 13.0797 11.0402 13.3134 10.9923C13.547 10.9443 13.7896 10.9653 14.0116 11.0525L15.5472 11.6656C15.7715 11.7567 15.9639 11.9121 16.1 12.1123C16.2361 12.3125 16.31 12.5486 16.3122 12.7906V15.6031C16.3109 15.7678 16.2763 15.9306 16.2104 16.0815C16.1446 16.2325 16.0488 16.3685 15.929 16.4815C15.8092 16.5945 15.6677 16.6821 15.5132 16.739C15.3586 16.7959 15.1942 16.8209 15.0297 16.8125C4.26905 16.1431 2.0978 7.03065 1.68718 3.54315C1.66812 3.37189 1.68553 3.19853 1.73828 3.03448C1.79103 2.87044 1.87791 2.71942 1.99322 2.59136C2.10852 2.46331 2.24963 2.36111 2.40727 2.29151C2.5649 2.2219 2.73549 2.18647 2.9078 2.18752H5.62468C5.86712 2.18824 6.10381 2.26147 6.30429 2.3978C6.50477 2.53413 6.65989 2.72732 6.74968 2.95252L7.3628 4.48815C7.45295 4.70925 7.47594 4.95201 7.42893 5.1861C7.38191 5.4202 7.26695 5.63525 7.09843 5.8044L5.83843 7.0644C5.83843 7.0644 6.56405 11.975 11.4353 12.5825Z"
+                                                fill="#BBBBBB"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h1 className="font-poppins text-xs md:text-sm">
+                                        (+62) 822-5801-1492
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <Footer />
         </>
     );
 }
