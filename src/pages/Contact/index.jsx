@@ -65,6 +65,12 @@ export default function Contact() {
         e.preventDefault();
         setIsLoading(true);
 
+        if (!formData.name || !formData.email || !formData.message) {
+            message.error("Please fill out all fields");
+            setIsLoading(false);
+            return;
+        }
+
         try {
             const formDataObj = new URLSearchParams();
             formDataObj.append("name", formData.name);
@@ -400,7 +406,7 @@ export default function Contact() {
                                 <input
                                     placeholder="John Doe"
                                     className="peer h-10 w-full border-b-2 border-gray-300 text-white bg-transparent placeholder-transparent focus:outline-none focus:border-white"
-                                    required=""
+                                    required
                                     id="name"
                                     name="name"
                                     value={formData.name}
@@ -417,7 +423,7 @@ export default function Contact() {
                                 <input
                                     placeholder="email"
                                     className="peer h-10 w-full border-b-2 border-gray-300 text-white bg-transparent placeholder-transparent focus:outline-none focus:border-white"
-                                    required=""
+                                    required
                                     id="email"
                                     name="email"
                                     value={formData.email}
@@ -436,7 +442,7 @@ export default function Contact() {
                                     name="message"
                                     rows="3"
                                     className="peer h-32 w-full border-b-2 border-gray-300 text-white bg-transparent placeholder-transparent border-t-0 border-r-0 border-l-0 outline-none focus:outline-none focus:border-white"
-                                    required=""
+                                    required
                                     placeholder="Message"
                                     value={formData.message}
                                     onChange={handleChange}

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../utils/LanguageContext";
 
 export default function Home() {
+    const navigate = useNavigate();
     const [mapUrl, setMapUrl] = useState(
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1499624642765!2d106.78087857592165!3d-6.243959261141998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1175b92614f%3A0x6173704d396d5a99!2sGandaria%20City!5e0!3m2!1sid!2sid!4v1721704678210!5m2!1sid!2sid"
     );
@@ -86,7 +88,12 @@ export default function Home() {
                                         ? "Dikurasi dengan sempurna, setiap set menyatu Keanggunan abadi dengan modernitas kecanggihan, memastikan Anda selalu mencari disatukan dengan sempurna."
                                         : "Curated to perfection, each set combines timeless elegance with modern sophistication, ensuring you always look impeccably put together."}
                                 </p>
-                                <button className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4">
+                                <button
+                                    className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4"
+                                    onClick={() =>
+                                        navigate("/under-construction")
+                                    }
+                                >
                                     <span className=" text-white relative z-10 duration-500">
                                         {isIndo ? "Lihat Semua" : "See All"}
                                     </span>
@@ -111,7 +118,12 @@ export default function Home() {
                                         ? "Koleksi kami berkisar dari gaun koktail hingga gaun malam yang elegan, penawaran koleksi kami serangkaian desain yang memancarkan kelas dan kecanggihan."
                                         : "Our collection from cocktail dresses to elegant evening gowns, our collection offers a range of designs that exude class and sophistication."}
                                 </p>
-                                <button className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4">
+                                <button
+                                    className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4"
+                                    onClick={() =>
+                                        navigate("/under-construction")
+                                    }
+                                >
                                     <span className=" text-white relative z-10 duration-500">
                                         {isIndo ? "Lihat Semua" : "See All"}
                                     </span>
@@ -138,7 +150,12 @@ export default function Home() {
                                         ? "Menampilkan desain cantik yang diwujudkan kemurnian dan kecanggihan, koleksi ini Membawa sentuhan elegan untuk semua orang peluang."
                                         : " Featuring exquisite designs that embody purity and sophistication, this collection brings a touch of elegance to every occasion."}
                                 </p>
-                                <button className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4">
+                                <button
+                                    className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4"
+                                    onClick={() =>
+                                        navigate("/under-construction")
+                                    }
+                                >
                                     <span className=" text-white relative z-10 duration-500">
                                         {isIndo ? "Lihat Semua" : "See All"}
                                     </span>
@@ -171,7 +188,10 @@ export default function Home() {
                                     ? "Jelajahi Koleksi Deluxe kami, di mana setiap bagian merupakan bukti pengerjaan halus dan desain indah. Ketersediaan terbatas dan dibuat dengan sangat memperhatikan detail, seri ini mewujudkan kemewahan dalam bentuknya yang paling murni. Rasakan mode yang melampaui tren dan mendefinisikan ulang keanggunan."
                                     : "Delve into our Deluxe Collection, where each piece is a testament to fine craftsmanship and exquisite design. Limited in availability and crafted with the utmost attention to detail, this series embodies luxury in its purest form. Experience fashion that transcends trends and redefines elegance."}
                             </p>
-                            <button className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-8">
+                            <button
+                                className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-8"
+                                onClick={() => navigate("/under-construction")}
+                            >
                                 <span className=" text-black group-hover:text-white relative z-10 duration-500">
                                     {isIndo
                                         ? "Jelajahi Koleksi Kami"
