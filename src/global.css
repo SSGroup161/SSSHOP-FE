@@ -31,3 +31,26 @@
     );
     backdrop-filter: blur(0px);
 }
+
+.bg-image {
+    background-image: url("/AssetSidebar1.png");
+    background-size: cover;
+    background-position: top;
+    transition: transform 0.3s ease-in-out;
+}
+
+.relative:hover .bg-image {
+    transform: scale(1.2);
+}
+
+.group-hover\:scale-110 {
+    transform: scale(1.1);
+}
+
+.transition-transform {
+    transition: transform 0.5s ease-in-out;
+}
+
+.group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+}

@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { Drawer } from "flowbite-react";
+import { Drawer } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../utils/LanguageContext";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isOpenMenu, setIsOpenMenu] = useState(false);
-    const [isOpenProfile, setIsOpenProfile] = useState(false);
     const { isIndo, setIsIndo } = useLanguage();
+    const [open, setOpen] = useState(false);
+    const [childrenDrawer, setChildrenDrawer] = useState(false);
+    const [thirdDrawer, setThirdDrawer] = useState(false);
+    const [isCouture, setIsCouture] = useState(false);
 
-    const handleClose = () => {
-        setIsOpenMenu(false);
-        setIsOpenProfile(false);
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
+    const showChildrenDrawer = () => {
+        setChildrenDrawer(true);
+    };
+    const onChildrenDrawerClose = () => {
+        setChildrenDrawer(false);
+    };
+    const showThirdDrawer = () => {
+        setThirdDrawer(true);
+    };
+    const onThirdDrawerClose = () => {
+        setThirdDrawer(false);
+    };
+    const showCouture = () => {
+        setIsCouture(true);
+    };
+    const onCoutureClose = () => {
+        setIsCouture(false);
     };
 
     const handleScroll = () => {
@@ -30,190 +52,281 @@ export default function Navbar() {
     return (
         <>
             <Drawer
-                open={isOpenMenu}
-                onClose={handleClose}
-                className="z-50 w-full"
-                position="left"
+                title={isIndo ? "Koleksi Kami" : "Our Couture"}
+                width={320}
+                closable
+                placement="left"
+                onClose={onCoutureClose}
+                open={isCouture}
             >
-                <Drawer.Header titleIcon={() => <></>} />
-                <Drawer.Items>
-                    <div className="flex flex-col justify-between h-screen pb-10">
-                        <div className="flex flex-col gap-10 px-4 ">
-                            <div className="flex items-center gap-2 cursor-pointer justify-center">
-                                <img
-                                    src="/SS-Shop-Logo-Black.svg"
-                                    width={50}
-                                    height={50}
-                                    alt="LogoSS"
-                                    className="w-10 cursor-pointer"
-                                    onClick={() => navigate("/")}
-                                />
-                            </div>
-                            <div
-                                className="flex items-center gap-2 cursor-pointer"
-                                id="SubMenu"
-                            >
-                                <h1
-                                    className="font-poppins text-lg hover:underline"
-                                    onClick={() => {
-                                        navigate("/");
-                                        setIsOpenMenu(false);
-                                    }}
-                                >
-                                    {isIndo ? "Beranda" : " Maison"}
-                                </h1>
-                            </div>
-                            <div
-                                className="flex items-center gap-2 cursor-pointer"
-                                id="SubMenu"
-                            >
-                                <h1
-                                    className="font-poppins text-lg hover:underline"
-                                    onClick={() => {
-                                        navigate("/our-heritage");
-                                        setIsOpenMenu(false);
-                                    }}
-                                >
-                                    {isIndo ? "Sejarah Kami" : " Our Heritage"}
-                                </h1>
-                            </div>
-                            <div
-                                className="flex items-center gap-2 cursor-pointer"
-                                id="SubMenu"
-                            >
-                                <h1
-                                    className="font-poppins text-lg hover:underline"
-                                    onClick={() => {
-                                        navigate("/concierge");
-                                        setIsOpenMenu(false);
-                                    }}
-                                >
-                                    {isIndo ? "Kontak" : " Concierge"}
-                                </h1>
-                            </div>
-                            <div
-                                className="flex items-center gap-2 cursor-pointer"
-                                id="SubMenu"
-                            >
-                                <h1
-                                    className="font-poppins text-lg hover:underline"
-                                    onClick={() => {
-                                        navigate("/under-construction");
-                                        setIsOpenMenu(false);
-                                    }}
-                                >
-                                    {isIndo ? "Koleksi" : " Couture"}
-                                </h1>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="flex flex-col gap-4 px-4 mb-6">
-                                <div
-                                    className="flex items-center gap-2 cursor-pointer"
-                                    id="SubMenu"
-                                >
-                                    <h1
-                                        className="font-poppins text-lg hover:underline"
-                                        onClick={() =>
-                                            navigate("/under-construction")
-                                        }
-                                    >
-                                        FAQ&apos;s
-                                    </h1>
-                                </div>
-                                <div
-                                    className="flex items-center gap-2 cursor-pointer"
-                                    id="SubMenu"
-                                >
-                                    <h1
-                                        className="font-poppins text-lg hover:underline"
-                                        onClick={() =>
-                                            navigate("/under-construction")
-                                        }
-                                    >
-                                        {isIndo
-                                            ? "Kebijakan Pribadi"
-                                            : " Privacy Policy"}
-                                    </h1>
-                                </div>
-                                <div
-                                    className="flex items-center gap-2 cursor-pointer"
-                                    id="SubMenu"
-                                >
-                                    <h1
-                                        className="font-poppins text-lg hover:underline"
-                                        onClick={() =>
-                                            navigate("/under-construction")
-                                        }
-                                    >
-                                        {isIndo
-                                            ? "Syarat dan Ketentuan"
-                                            : " Terms and Conditions"}
-                                    </h1>
-                                </div>
-                                <div>
-                                    <h1 className="text-xs text-center font-roboto">
-                                        {isIndo
-                                            ? "Semua Hak Dilindungi Undang-Undang ©2024 SS Shop | Bagian dari SS Grup"
-                                            : "All Rights Reserved ©2024 SS Shop | Part of SS Group"}
-                                    </h1>
-                                </div>
-                            </div>
+                <div className="w-full h-full flex flex-col items-center justify-between">
+                    <div
+                        className="relative w-full h-32 rounded-xl cursor-pointer overflow-hidden"
+                        onClick={showThirdDrawer}
+                    >
+                        <div className="bg-image w-full h-full absolute top-0 left-0"></div>
+                        <div className="bg-black/30 w-full h-full flex items-center justify-center px-6 relative z-10">
+                            <h1 className="text-white font-legitima text-3xl drop-shadow-lg">
+                                Deluxe Collection
+                            </h1>
                         </div>
                     </div>
-                </Drawer.Items>
+                    <h1
+                        className="font-legitima underline cursor-pointer"
+                        onClick={() => navigate("/our-couture")}
+                    >
+                        See All Collection
+                    </h1>
+                </div>
+                <Drawer
+                    title={isIndo ? "Koleksi Mewah" : "Deluxe Collection"}
+                    width={320}
+                    closable
+                    placement="left"
+                    onClose={onThirdDrawerClose}
+                    open={thirdDrawer}
+                >
+                    <div className="w-full h-full flex flex-col gap-2 justify-start items-center">
+                        <div className="w-full h-44 gap-2 bg-slate-300 bg-[url('/AssetSidebar2.png')] bg-cover bg-top ">
+                            <div className="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end justify-start font-legitima p-4 text-lg">
+                                <h1 className="text-white">
+                                    {isIndo ? "Gaun Putih" : "White Dresses"}
+                                </h1>
+                            </div>
+                        </div>
+                        <div className="w-full h-full flex gap-2">
+                            <div className="w-full h-full gap-2 bg-slate-300 bg-[url('/AssetSidebar3.png')] bg-cover bg-top ">
+                                <div className="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end justify-start font-legitima p-4 text-lg">
+                                    <h1 className="text-white">
+                                        {isIndo ? "Gaun" : "Dress"}
+                                    </h1>
+                                </div>
+                            </div>
+                            <div className="w-full h-full gap-2 bg-slate-300 bg-[url('/AssetSidebar4.png')] bg-cover bg-top ">
+                                <div className="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end justify-start font-legitima p-4 text-lg">
+                                    <h1 className="text-white">
+                                        {isIndo ? "Satu Set" : "One Set"}
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            className="w-full mt-2 bg-transparent items-center justify-center flex border-2 border-black shadow-lg hover:bg-black text-black hover:text-white duration-300 cursor-pointer active:scale-[0.98]"
+                            onClick={() =>
+                                navigate("/our-couture/deluxe-collection")
+                            }
+                        >
+                            <button className="py-[6px]">
+                                {isIndo ? "Lihat Semua" : "See More"}
+                            </button>
+                        </div>
+                    </div>
+                </Drawer>
             </Drawer>
-
             <Drawer
-                open={isOpenProfile}
-                onClose={handleClose}
-                position="right"
-                className="z-50 w-full"
-            >
-                <Drawer.Header titleIcon={() => <></>} />
-                <Drawer.Items>
-                    <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                        Supercharge your hiring by taking advantage of our&nbsp;
-                        <a
-                            href="#"
-                            className="text-cyan-600 underline hover:no-underline dark:text-cyan-500"
-                        >
-                            limited-time sale
-                        </a>
-                        &nbsp;for Flowbite Docs + Job Board. Unlimited access to
-                        over 190K top-ranked candidates and the #1 design job
-                        board.
-                    </p>
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                        <a
-                            href="#"
-                            className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-cyan-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-                        >
-                            Learn more
-                        </a>
-                        <a
-                            href="#"
-                            className="inline-flex items-center rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-                        >
-                            Get access&nbsp;
-                            <svg
-                                className="ms-2 h-3.5 w-3.5 rtl:rotate-180"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 14 10"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                                />
-                            </svg>
-                        </a>
+                title={
+                    <div className="w-full justify-center items-center flex">
+                        <img
+                            src="/SS-Shop-Logo-Black.svg"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="w-8 -ms-10"
+                            loading="lazy"
+                        />
                     </div>
-                </Drawer.Items>
+                }
+                width={320}
+                closable
+                onClose={onClose}
+                open={open}
+                placement="left"
+            >
+                <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col gap-10 px-4 ">
+                        <div
+                            className="flex items-center gap-2 cursor-pointer"
+                            id="SubMenu"
+                        >
+                            <h1
+                                className="font-poppins text-lg hover:underline"
+                                onClick={() => {
+                                    navigate("/");
+                                    setOpen(false);
+                                }}
+                            >
+                                {isIndo ? "Beranda" : " Maison"}
+                            </h1>
+                        </div>
+                        <div
+                            className="flex items-center gap-2 cursor-pointer"
+                            id="SubMenu"
+                        >
+                            <h1
+                                className="font-poppins text-lg hover:underline"
+                                onClick={() => {
+                                    navigate("/our-heritage");
+                                    setOpen(false);
+                                }}
+                            >
+                                {isIndo ? "Sejarah Kami" : " Our Heritage"}
+                            </h1>
+                        </div>
+                        <div
+                            className="flex items-center gap-2 cursor-pointer"
+                            id="SubMenu"
+                        >
+                            <h1
+                                className="font-poppins text-lg hover:underline"
+                                onClick={() => {
+                                    navigate("/concierge");
+                                    setOpen(false);
+                                }}
+                            >
+                                {isIndo ? "Kontak" : " Concierge"}
+                            </h1>
+                        </div>
+                        <div
+                            className="flex items-center gap-2 cursor-pointer"
+                            id="SubMenu"
+                        >
+                            <h1
+                                className="font-poppins text-lg hover:underline"
+                                onClick={showChildrenDrawer}
+                            >
+                                {isIndo ? "Koleksi" : " Couture"}
+                            </h1>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="flex flex-col gap-4 px-4 mb-6">
+                            <div
+                                className="flex items-center gap-2 cursor-pointer"
+                                id="SubMenu"
+                            >
+                                <h1
+                                    className="font-poppins text-lg hover:underline"
+                                    onClick={() =>
+                                        navigate("/under-construction")
+                                    }
+                                >
+                                    FAQ&apos;s
+                                </h1>
+                            </div>
+                            <div
+                                className="flex items-center gap-2 cursor-pointer"
+                                id="SubMenu"
+                            >
+                                <h1
+                                    className="font-poppins text-lg hover:underline"
+                                    onClick={() =>
+                                        navigate("/under-construction")
+                                    }
+                                >
+                                    {isIndo
+                                        ? "Kebijakan Pribadi"
+                                        : " Privacy Policy"}
+                                </h1>
+                            </div>
+                            <div
+                                className="flex items-center gap-2 cursor-pointer"
+                                id="SubMenu"
+                            >
+                                <h1
+                                    className="font-poppins text-lg hover:underline"
+                                    onClick={() =>
+                                        navigate("/under-construction")
+                                    }
+                                >
+                                    {isIndo
+                                        ? "Syarat dan Ketentuan"
+                                        : " Terms and Conditions"}
+                                </h1>
+                            </div>
+                            <div>
+                                <h1 className="text-xs text-center font-roboto">
+                                    {isIndo
+                                        ? "Semua Hak Dilindungi Undang-Undang ©2024 Shellasaukia.co | Bagian dari SS Grup"
+                                        : "All Rights Reserved ©2024 Shellasaukia.co | Part of SS Group"}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <Drawer
+                    title={isIndo ? "Koleksi Kami" : "Our Couture"}
+                    width={320}
+                    closable
+                    placement="left"
+                    onClose={onChildrenDrawerClose}
+                    open={childrenDrawer}
+                >
+                    <div className="w-full h-full flex flex-col items-center justify-between">
+                        <div
+                            className="relative w-full h-32 rounded-xl cursor-pointer overflow-hidden"
+                            onClick={showThirdDrawer}
+                        >
+                            <div className="bg-image w-full h-full absolute top-0 left-0"></div>
+                            <div className="bg-black/30 w-full h-full flex items-center justify-center px-6 relative z-10">
+                                <h1 className="text-white font-legitima text-3xl drop-shadow-lg">
+                                    Deluxe Collection
+                                </h1>
+                            </div>
+                        </div>
+                        <h1
+                            className="font-legitima underline cursor-pointer"
+                            onClick={() => navigate("/our-couture")}
+                        >
+                            See All Collection
+                        </h1>
+                    </div>
+                    <Drawer
+                        title={isIndo ? "Koleksi Mewah" : "Deluxe Collection"}
+                        width={320}
+                        closable
+                        placement="left"
+                        onClose={onThirdDrawerClose}
+                        open={thirdDrawer}
+                    >
+                        <div className="w-full h-full flex flex-col gap-2 justify-start items-center">
+                            <div className="w-full h-44 gap-2 bg-slate-300 bg-[url('/AssetSidebar2.png')] bg-cover bg-top ">
+                                <div className="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end justify-start font-legitima p-4 text-lg">
+                                    <h1 className="text-white">
+                                        {isIndo
+                                            ? "Gaun Putih"
+                                            : "White Dresses"}
+                                    </h1>
+                                </div>
+                            </div>
+                            <div className="w-full h-80 flex gap-2">
+                                <div className="w-full h-full gap-2 bg-slate-300 bg-[url('/AssetSidebar3.png')] bg-cover bg-top ">
+                                    <div className="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end justify-start font-legitima p-4 text-lg">
+                                        <h1 className="text-white">
+                                            {isIndo ? "Gaun" : "Dress"}
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div className="w-full h-full gap-2 bg-slate-300 bg-[url('/AssetSidebar4.png')] bg-cover bg-top ">
+                                    <div className="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent flex items-end justify-start font-legitima p-4 text-lg">
+                                        <h1 className="text-white">
+                                            {isIndo ? "Satu Set" : "One Set"}
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                className="w-full mt-2 bg-transparent items-center justify-center flex border-2 border-black shadow-lg hover:bg-black text-black hover:text-white duration-300 cursor-pointer active:scale-[0.98]"
+                                onClick={() =>
+                                    navigate("/our-couture/deluxe-collection")
+                                }
+                            >
+                                <button className="py-[6px]">
+                                    {isIndo ? "Lihat Semua" : "See More"}
+                                </button>
+                            </div>
+                        </div>
+                    </Drawer>
+                </Drawer>
             </Drawer>
 
             <div
@@ -229,7 +342,7 @@ export default function Navbar() {
                         viewBox="0 0 24 24"
                         fill="none"
                         className="lg:hidden mt-2 cursor-pointer"
-                        onClick={() => setIsOpenMenu(true)}
+                        onClick={showDrawer}
                     >
                         <path
                             d="M3 6H21M3 12H21M3 18H21"
@@ -292,7 +405,7 @@ export default function Navbar() {
                                 className={`font-legitima cursor-pointer transition-colors ease-in-out hover:underline duration-600 text-lg tracking-wide ${
                                     isScrolled ? "text-black" : "text-white"
                                 }`}
-                                onClick={() => navigate("/under-construction")}
+                                onClick={showCouture}
                             >
                                 {isIndo ? "Koleksi" : "Couture"}
                             </h1>
