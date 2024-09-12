@@ -331,7 +331,7 @@ export default function Navbar() {
 
             <div
                 className={`w-screen h-20 md:h-28 bg-white py-6 px-6 md:px-20 fixed top-0 z-40 transition-all duration-500 ease-in-out ${
-                    isScrolled ? "bg-opacity-100" : "bg-opacity-0"
+                    isScrolled ? "bg-opacity-100 shadow-md" : "bg-opacity-0"
                 }`}
             >
                 <div className=" w-full h-full flex items-center justify-between">

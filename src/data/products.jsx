@@ -76,11 +76,4 @@ export const products = [
         price: "IDR 9,800,000",
         imageUrl: "/AssetProduct11.png",
     },
-    {
-        id: 12,
-        id_title: "roose-one-set",
-        name: "Roose One Set",
-        price: "IDR 6,500,000",
-        imageUrl: "/AssetProduct12.png",
-    },
 ];

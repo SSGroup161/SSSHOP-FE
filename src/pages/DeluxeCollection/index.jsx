@@ -5,16 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../utils/LanguageContext";
 
 export default function DeluxeCollection() {
+    const navigate = useNavigate();
     const { isIndo } = useLanguage();
 
     return (
-        <>
+        <> 
             <Navbar />
             <section className="w-full h-screen bg-[url('/AssetDeluxeCollection1.png')] bg-cover bg-top">
                 <div className="bg-drop w-full h-full flex items-end">
                     <div className="w-full h-40 md:h-32 bg-black/20 flex flex-col items-center justify-center gap-1 px-10">
                         <h1 className="font-legitima text-white text-xl md:text-3xl">
-                            {isIndo
+                            {isIndo 
                                 ? "Selamat datang di Elegance Redefined"
                                 : "Welcome to Elegance Redefined"}
                         </h1>
@@ -43,7 +44,11 @@ export default function DeluxeCollection() {
                         <p className="font-poppins">IDR. 4.500.000</p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-black mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    `/our-couture/deluxe-collection/azalea-one-set`
+                                )
+                            }
                         >
                             <span className=" text-white group-hover:text-black relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -71,7 +76,11 @@ export default function DeluxeCollection() {
                         <p className="font-poppins">IDR. 9.800.000</p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-black mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    `/our-couture/deluxe-collection/petunia-dress`
+                                )
+                            }
                         >
                             <span className=" text-white group-hover:text-black relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -99,7 +108,11 @@ export default function DeluxeCollection() {
                         <p className="font-poppins">IDR. 12.000.000</p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-black mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/freesia-dress"
+                                )
+                            }
                         >
                             <span className=" text-white group-hover:text-black relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -145,7 +158,11 @@ export default function DeluxeCollection() {
                         </p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/athena-dress"
+                                )
+                            }
                         >
                             <span className=" text-black group-hover:text-white relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -175,7 +192,11 @@ export default function DeluxeCollection() {
                         </p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/kavala-one-set"
+                                )
+                            }
                         >
                             <span className=" text-black group-hover:text-white relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -205,7 +226,11 @@ export default function DeluxeCollection() {
                         </p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/larissa-dress"
+                                )
+                            }
                         >
                             <span className=" text-black group-hover:text-white relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -235,7 +260,11 @@ export default function DeluxeCollection() {
                         </p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/khania-one-set"
+                                )
+                            }
                         >
                             <span className=" text-black group-hover:text-white relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -281,7 +310,11 @@ export default function DeluxeCollection() {
                         <p className="font-poppins">IDR. 6.500.000</p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-black mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/roose-one-set"
+                                )
+                            }
                         >
                             <span className=" text-white group-hover:text-black relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -309,7 +342,11 @@ export default function DeluxeCollection() {
                         <p className="font-poppins">IDR. 9.900.000</p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-black mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/breda-dress"
+                                )
+                            }
                         >
                             <span className=" text-white group-hover:text-black relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -337,7 +374,11 @@ export default function DeluxeCollection() {
                         <p className="font-poppins">IDR. 6.500.000</p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-black mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/almere-dress"
+                                )
+                            }
                         >
                             <span className=" text-white group-hover:text-black relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -365,7 +406,11 @@ export default function DeluxeCollection() {
                         <p className="font-poppins">IDR. 9.500.000</p>
                         <button
                             className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-black mt-2"
-                            onClick={() => navigate("/under-construction")}
+                            onClick={() =>
+                                navigate(
+                                    "/our-couture/deluxe-collection/zoe-one-set"
+                                )
+                            }
                         >
                             <span className=" text-white group-hover:text-black relative z-10 duration-500">
                                 {isIndo ? "Lihat Lebih Lanjut" : "View More"}
@@ -378,7 +423,6 @@ export default function DeluxeCollection() {
                     </div>
                 </div>
             </section>
-
             <Footer />
         </>
     );
