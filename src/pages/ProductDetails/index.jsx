@@ -164,17 +164,23 @@ export default function ProductDetails() {
                                 <span className="absolute delay-300 top-0 left-0 w-full bg-black/60 duration-500 group-hover:translate-y-full h-full"></span>
                             </button>
                         </a>
-                        <h1 className="font-poppins text-xs hover:underline mt-10 lg:mt-20 cursor-pointer">
-                            {isIndo ? "Butuh bantuan?" : "Need help?"}
-                        </h1>
-                        <h1 className="font-poppins text-xs hover:underline mt-3 cursor-pointer">
-                            {isIndo
-                                ? "Liat koleksi lain"
-                                : "See others collection"}
-                        </h1>
-                        <h1 className="font-poppins text-xs hover:underline mt-3 cursor-pointer">
-                            {isIndo ? "Kembali ke beranda" : "Back to Home"}
-                        </h1>
+                        <a href="mailto:info@shellasaukia.co">
+                            <h1 className="font-poppins text-xs hover:underline mt-10 lg:mt-20 cursor-pointer">
+                                {isIndo ? "Butuh bantuan?" : "Need help?"}
+                            </h1>
+                        </a>
+                        <a href="https://shellasaukia.co/our-couture">
+                            <h1 className="font-poppins text-xs hover:underline mt-3 cursor-pointer">
+                                {isIndo
+                                    ? "Liat koleksi lain"
+                                    : "See others collection"}
+                            </h1>
+                        </a>
+                        <a href="https://shellasaukia.co">
+                            <h1 className="font-poppins text-xs hover:underline mt-3 cursor-pointer">
+                                {isIndo ? "Kembali ke beranda" : "Back to Home"}
+                            </h1>
+                        </a>
                     </div>
                 </div>
             </div>
