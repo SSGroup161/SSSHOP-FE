@@ -11,6 +11,10 @@ let url = import.meta.env.VITE_REACT_APP_API_KEY;
 const ProductCard = ({ product }) => {
     const navigate = useNavigate();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const handleClick = () => {
         navigate(`/our-couture/deluxe-collection/${product.id_title}`);
     };

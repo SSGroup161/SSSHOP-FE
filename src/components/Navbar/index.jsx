@@ -210,19 +210,6 @@ export default function Navbar() {
                                         navigate("/under-construction")
                                     }
                                 >
-                                    FAQ&apos;s
-                                </h1>
-                            </div>
-                            <div
-                                className="flex items-center gap-2 cursor-pointer"
-                                id="SubMenu"
-                            >
-                                <h1
-                                    className="font-poppins text-lg hover:underline"
-                                    onClick={() =>
-                                        navigate("/under-construction")
-                                    }
-                                >
                                     {isIndo
                                         ? "Kebijakan Pribadi"
                                         : " Privacy Policy"}

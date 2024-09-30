@@ -8,14 +8,18 @@ export default function DeluxeCollection() {
     const navigate = useNavigate();
     const { isIndo } = useLanguage();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
-        <> 
+        <>
             <Navbar />
             <section className="w-full h-screen bg-[url('/AssetDeluxeCollection1.png')] bg-cover bg-top">
                 <div className="bg-drop w-full h-full flex items-end">
                     <div className="w-full h-40 md:h-32 bg-black/20 flex flex-col items-center justify-center gap-1 px-10">
                         <h1 className="font-legitima text-white text-xl md:text-3xl">
-                            {isIndo 
+                            {isIndo
                                 ? "Selamat datang di Elegance Redefined"
                                 : "Welcome to Elegance Redefined"}
                         </h1>

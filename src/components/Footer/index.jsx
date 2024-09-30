@@ -53,7 +53,7 @@ export default function Footer() {
                                     <h1
                                         className="font-poppins text-white text-sm font-light cursor-pointer hover:underline"
                                         onClick={() => {
-                                            navigate("/under-construction");
+                                            navigate("/our-couture");
                                         }}
                                     >
                                         {isIndo ? "Koleksi" : "Couture"}
@@ -68,15 +68,7 @@ export default function Footer() {
                                     <h1
                                         className="font-poppins text-white text-sm font-light cursor-pointer hover:underline"
                                         onClick={() => {
-                                            navigate("/under-construction");
-                                        }}
-                                    >
-                                        FAQ&apos;s
-                                    </h1>
-                                    <h1
-                                        className="font-poppins text-white text-sm font-light cursor-pointer hover:underline"
-                                        onClick={() => {
-                                            navigate("/under-construction");
+                                            navigate("/terms-conditions");
                                         }}
                                     >
                                         {isIndo
@@ -86,7 +78,7 @@ export default function Footer() {
                                     <h1
                                         className="font-poppins text-white text-sm font-light cursor-pointer hover:underline"
                                         onClick={() => {
-                                            navigate("/under-construction");
+                                            navigate("/privacy-policy");
                                         }}
                                     >
                                         {isIndo
@@ -119,8 +111,8 @@ export default function Footer() {
                         <div className="hidden md:flex items-center justify-start px-10 py-4">
                             <h1 className="text-white font-poppins text-sm">
                                 {isIndo
-                                    ? "Semua Hak Dilindungi Undang-Undang ©2024 SS Shop | Bagian dari SS Grup"
-                                    : "All Rights Reserved ©2024 SS Shop | Part of SS Group"}
+                                    ? "Semua Hak Dilindungi Undang-Undang ©2024 PT Shella Saukia Putri | Bagian dari SS Grup"
+                                    : "All Rights Reserved ©2024 PT Shella Saukia Putri | Part of SS Group"}
                             </h1>
                         </div>
                     </div>
@@ -173,8 +165,8 @@ export default function Footer() {
                         <div className="md:hidden flex items-center justify-start w-full mt-8">
                             <h1 className="text-white font-poppins text-xs text-center">
                                 {isIndo
-                                    ? "Semua Hak Dilindungi Undang-Undang ©2024 SS Shop | Bagian dari SS Grup"
-                                    : "All Rights Reserved ©2024 SS Shop | Part of SS Group"}
+                                    ? "Semua Hak Dilindungi Undang-Undang ©2024 PT Shella Saukia Putri| Bagian dari SS Grup"
+                                    : "All Rights Reserved ©2024 PT Shella Saukia Putri| Part of SS Group"}
                             </h1>
                         </div>
                     </div>

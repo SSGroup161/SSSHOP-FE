@@ -537,9 +537,9 @@ export default function Contact() {
                                     </svg>
                                     <h1 className="font-poppins text-gray-400 text-xs">
                                         {" "}
-                                        Jl. K.H. Wahid Hasyim No.161, RT.1/RW.5
-                                        Kecamatan Tanah Abang, Jakarta Pusat,
-                                        DKI Jakarta - 10240
+                                        JL. K.H Wahid Hasyim No.192, Kel.
+                                        Kampung Bali, Tanah Abang, Jakarta
+                                        Pusat, DKI Jakarta, 10250
                                     </h1>
                                 </div>
                             </div>

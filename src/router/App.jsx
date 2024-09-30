@@ -8,6 +8,8 @@ import NotFound from "../pages/NotFound";
 import Contact from "../pages/Contact";
 import ProductCatalog from "../pages/ProductCatalog";
 import ProductDetails from "../pages/ProductDetails";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsConditions from "../pages/TermsConditions";
 
 const App = () => {
     return (
@@ -18,6 +20,9 @@ const App = () => {
                 <Route path="/our-heritage" element={<About />} />
                 <Route path="/concierge" element={<Contact />} />
                 <Route path="/our-couture" element={<ProductCatalog />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-conditions" element={<TermsConditions />} />
+
                 <Route
                     path="/our-couture/deluxe-collection/:id"
                     element={<ProductDetails />}
