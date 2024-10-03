@@ -41,6 +41,38 @@ export default function ProductDetails() {
         getData();
     }, [id]);
 
+    const title = data?.product_name;
+    const description =
+        "Shella Saukia Shop (SS Shop) is a branch company of the Shella Saukia Group that focuses on the world of fashion, the business has been started since 2014 which was started directly by Shella Saukia who initially started this business only as a reseller and is now developing and building her own company and holds the position as Chief Executive Officer (CEO) Shella Saukia Group.";
+
+    const canonicalUrl = `https://www.shellasaukia.co/our-couture/deluxe-collection/${data?.product_name}`;
+
+    useEffect(() => {
+        document.title = title;
+
+        const metaDescription = document.querySelector(
+            'meta[name="description"]'
+        );
+        if (metaDescription) {
+            metaDescription.setAttribute("content", description);
+        } else {
+            const meta = document.createElement("meta");
+            meta.setAttribute("name", "description");
+            meta.setAttribute("content", description);
+            document.head.appendChild(meta);
+        }
+
+        const linkCanonical = document.querySelector('link[rel="canonical"]');
+        if (linkCanonical) {
+            linkCanonical.setAttribute("href", canonicalUrl);
+        } else {
+            const link = document.createElement("link");
+            link.setAttribute("rel", "canonical");
+            link.setAttribute("href", canonicalUrl);
+            document.head.appendChild(link);
+        }
+    }, [title, description, canonicalUrl]);
+
     return (
         <>
             <Navbar />

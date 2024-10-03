@@ -91,7 +91,9 @@ export default function Home() {
                                 <button
                                     className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4"
                                     onClick={() =>
-                                        navigate("/under-construction")
+                                        navigate(
+                                            "/our-couture/deluxe-collection/"
+                                        )
                                     }
                                 >
                                     <span className=" text-white relative z-10 duration-500">
@@ -121,7 +123,9 @@ export default function Home() {
                                 <button
                                     className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4"
                                     onClick={() =>
-                                        navigate("/under-construction")
+                                        navigate(
+                                            "/our-couture/deluxe-collection/"
+                                        )
                                     }
                                 >
                                     <span className=" text-white relative z-10 duration-500">
@@ -153,7 +157,9 @@ export default function Home() {
                                 <button
                                     className="cursor-pointer relative group overflow-hidden border-2 px-16 py-2 border-white mt-4"
                                     onClick={() =>
-                                        navigate("/under-construction")
+                                        navigate(
+                                            "/our-couture/deluxe-collection/"
+                                        )
                                     }
                                 >
                                     <span className=" text-white relative z-10 duration-500">
@@ -190,7 +196,9 @@ export default function Home() {
                             </p>
                             <button
                                 className="cursor-pointer relative group overflow-hidden border-2 px-12 py-2 border-white mt-8"
-                                onClick={() => navigate("/under-construction")}
+                                onClick={() =>
+                                    navigate("/our-couture/deluxe-collection/")
+                                }
                             >
                                 <span className=" text-black group-hover:text-white relative z-10 duration-500">
                                     {isIndo
